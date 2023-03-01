@@ -1,7 +1,7 @@
 const SignUpForm = () => {
   return (
-    <div>
-      <form className='flex flex-col items-center'>
+    <div className='h-screen w-1/2'>
+      <form className=' flex flex-col items-center border-2 border-slate-300 rounded-lg px-8 py-4'>
         <div>
           <label
             htmlFor='name'
