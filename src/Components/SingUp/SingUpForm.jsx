@@ -1,20 +1,29 @@
 import { useState } from 'react';
+import { useFormik } from 'formik';
+
+const initialValues = {
+  name: '',
+  email: '',
+  password: '',
+};
 
 const SignUpForm = () => {
-  const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    password: '',
+  const formik = useFormik({
+    // initialValues: initialValues,
+    initialValues,
   });
-
-  const changeHandler = ({ target }) => {
-    //
-    setUserData({ ...userData, [target.name]: target.value });
+  console.log(formik.values);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log('Submitted !!');
   };
 
   return (
     <div className='h-screen w-1/2'>
-      <form className=' flex flex-col items-center border-2 border-slate-300 shadow-md rounded-lg px-8 py-4'>
+      <form
+        onSubmit={submitHandler}
+        className=' flex flex-col items-center bg-gray-50 border-2 border-slate-300 shadow-md rounded-lg px-8 py-4'
+      >
         {/* Name */}
         <div>
           <label
@@ -27,8 +36,8 @@ const SignUpForm = () => {
             type='text'
             id='name'
             name='name'
-            onChange={changeHandler}
-            value={userData.name}
+            onChange={formik.handleChange}
+            value={formik.values.name}
             className='bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
             placeholder='Name'
             required
@@ -46,8 +55,8 @@ const SignUpForm = () => {
             type='email'
             id='email'
             name='email'
-            onChange={changeHandler}
-            value={userData.email}
+            onChange={formik.handleChange}
+            value={formik.values.email}
             className='bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
             placeholder='Email'
             required
@@ -65,8 +74,8 @@ const SignUpForm = () => {
             type='text'
             id='password'
             name='password'
-            onChange={changeHandler}
-            value={userData.password}
+            onChange={formik.handleChange}
+            value={formik.values.password}
             className='bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
             placeholder='•••••••••'
             required
