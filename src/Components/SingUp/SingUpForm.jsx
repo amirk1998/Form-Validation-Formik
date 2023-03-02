@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { useFormik } from 'formik';
+import { object, string, number } from 'yup';
 
 const initialValues = {
   name: '',
@@ -7,21 +7,30 @@ const initialValues = {
   password: '',
 };
 
+const validationSchema = object({
+  name: string().required('Name is Required'),
+  email: string().email('Invalid email format').required('Email is Required'),
+  password: string().required('Password is Required'),
+});
+
 const SignUpForm = () => {
+  const onSubmit = (values) => {
+    console.log(values);
+  };
+
   const formik = useFormik({
     // initialValues: initialValues,
     initialValues,
+    onSubmit,
+    validationSchema,
   });
-  console.log(formik.values);
-  const submitHandler = (e) => {
-    e.preventDefault();
-    console.log('Submitted !!');
-  };
+
+  // console.log(formik.values);
 
   return (
     <div className='h-screen w-1/2'>
       <form
-        onSubmit={submitHandler}
+        onSubmit={formik.handleSubmit}
         className=' flex flex-col items-center bg-gray-50 border-2 border-slate-300 shadow-md rounded-lg px-8 py-4'
       >
         {/* Name */}
@@ -36,12 +45,16 @@ const SignUpForm = () => {
             type='text'
             id='name'
             name='name'
-            onChange={formik.handleChange}
-            value={formik.values.name}
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+            {...formik.getFieldProps('name')}
+            className='bg-gray-50 border-2 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:outline-none block w-full p-2.5'
             placeholder='Name'
             required
           />
+          {formik.errors.name && formik.touched.name && (
+            <div className='text-red-500 mt-1 text-sm '>
+              {formik.errors.name}
+            </div>
+          )}
         </div>
         {/* Email Address */}
         <div className='my-6'>
@@ -55,12 +68,16 @@ const SignUpForm = () => {
             type='email'
             id='email'
             name='email'
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
+            {...formik.getFieldProps('email')}
+            className='bg-gray-50 border-2 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:outline-none block w-full p-2.5'
             placeholder='Email'
             required
           />
+          {formik.errors.email && formik.touched.email && (
+            <div className='text-red-500 mt-1 text-sm'>
+              {formik.errors.email}
+            </div>
+          )}
         </div>
         {/* Password */}
         <div className='mb-6'>
@@ -74,12 +91,17 @@ const SignUpForm = () => {
             type='text'
             id='password'
             name='password'
-            onChange={formik.handleChange}
-            value={formik.values.password}
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
-            placeholder='•••••••••'
+            {...formik.getFieldProps('password')}
+            className='bg-gray-50 border-2 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:outline-none block w-full p-2.5'
+            // placeholder='•••••••••'
+            placeholder='Password'
             required
           />
+          {formik.errors.password && formik.touched.password && (
+            <div className='text-red-500 mt-1 text-sm'>
+              {formik.errors.password}
+            </div>
+          )}
         </div>
         {/* Confirm Password */}
         {/* <div className='mb-6'>
