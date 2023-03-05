@@ -1,5 +1,15 @@
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import * as Yup from 'yup';
+
+const savedData = {
+  name: 'AmirHossein',
+  email: 'amir@test.com',
+  phoneNumber: '09171234567',
+  password: 'Amir102030@',
+  passwordConfirm: 'Amir102030@',
+  gender: '0',
+};
 
 const initialValues = {
   name: '',
@@ -36,16 +46,20 @@ const validationSchema = Yup.object({
 
 const SignUpForm = () => {
   //
+
+  const [formValues, setFormValues] = useState(null);
+
   const onSubmit = (values) => {
     console.log(values);
   };
 
   const formik = useFormik({
     // initialValues: initialValues,
-    initialValues,
+    initialValues: formValues || initialValues,
     onSubmit,
     validationSchema,
     validateOnMount: true,
+    enableReinitialize: true,
   });
 
   return (
@@ -213,19 +227,34 @@ const SignUpForm = () => {
               </label>
             </div>
           </li>
+          {formik.errors.gender && formik.touched.gender && (
+            <div className='text-red-500 mt-1 text-sm'>
+              {formik.errors.gender}
+            </div>
+          )}
         </ul>
 
-        <button
-          type='submit'
-          disabled={!formik.isValid}
-          className={
-            formik.isValid
-              ? 'focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 '
-              : 'focus:outline-none text-white bg-gray-700 font-medium rounded-lg text-sm px-5 py-2.5 mb-2  cursor-not-allowed'
-          }
-        >
-          Submit
-        </button>
+        {/* Load Data Button */}
+        <div className='flex items-center justify-between w-[350px]'>
+          <button
+            onClick={() => setFormValues(savedData)}
+            className='focus:outline-none text-white bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 mb-2  '
+          >
+            Load Data
+          </button>
+          {/* Submit Button */}
+          <button
+            type='submit'
+            disabled={!formik.isValid}
+            className={
+              formik.isValid
+                ? 'focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 '
+                : 'focus:outline-none text-white bg-gray-700 font-medium rounded-lg text-sm px-5 py-2.5 mb-2  cursor-not-allowed'
+            }
+          >
+            Submit Data
+          </button>
+        </div>
       </form>
     </div>
   );
