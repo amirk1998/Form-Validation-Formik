@@ -7,6 +7,7 @@ const initialValues = {
   phoneNumber: '',
   password: '',
   passwordConfirm: '',
+  gender: '',
 };
 
 const validationSchema = Yup.object({
@@ -29,6 +30,8 @@ const validationSchema = Yup.object({
   passwordConfirm: Yup.string()
     .required('Password Confirmation is Required')
     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
+
+  gender: Yup.string().required('Gender is Required'),
 });
 
 const SignUpForm = () => {
@@ -145,7 +148,7 @@ const SignUpForm = () => {
           )}
         </div>
         {/* Confirm Password */}
-        <div className='my-6 w-[350px]'>
+        <div className='mt-6 w-[350px]'>
           <label
             htmlFor='passwordConfirm'
             className='block mb-2 text-lg font-medium text-gray-900'
@@ -168,6 +171,49 @@ const SignUpForm = () => {
             </div>
           )}
         </div>
+        {/* Radio Buttons */}
+        <ul className='flex items-center justify-between w-[350px] bg-gray-50 border-2 border-gray-300 rounded-lg text-sm font-medium text-slate-900 my-10 '>
+          {/* Item 1 */}
+          <li className='w-full border-gray-200 my-2 '>
+            <div className='flex items-center pl-3'>
+              <input
+                id='0'
+                type='radio'
+                value='0'
+                name='gender'
+                onChange={formik.handleChange}
+                checked={formik.values.gender === '0'}
+                className='w-4 h-4 text-purple-600 accent-purple-700 bg-gray-100 border-gray-300  '
+              />
+              <label
+                htmlFor='0'
+                className='w-full py-2 ml-2 text-sm font-medium text-gray-900 '
+              >
+                Male
+              </label>
+            </div>
+          </li>
+          {/* Item 2 */}
+          <li className='w-full border-gray-200 my-2 '>
+            <div className='flex items-center pl-3'>
+              <input
+                id='1'
+                type='radio'
+                value='1'
+                name='gender'
+                onChange={formik.handleChange}
+                checked={formik.values.gender === '1'}
+                className='w-4 h-4 text-purple-600 accent-purple-700 bg-gray-100 border-gray-300'
+              />
+              <label
+                htmlFor='1'
+                className='w-full py-2 ml-2 text-sm font-medium text-gray-900'
+              >
+                Female
+              </label>
+            </div>
+          </li>
+        </ul>
 
         <button
           type='submit'
