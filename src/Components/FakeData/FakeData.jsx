@@ -1,4 +1,4 @@
-import userData from '../../../data/FakeUserData';
+import userData from './FakeUserData';
 import { addNewUser } from '../../services/addNewUserService';
 const FakeData = () => {
   const postUser = async () => {
