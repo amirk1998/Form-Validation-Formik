@@ -17,6 +17,24 @@
       "passwordConfirm": "LQ:v}s9e,c2W",
       "gender": "0",
       "id": 2
+    },
+    {
+      "name": "Richard Casper",
+      "email": "Eldora.Kunze17@yahoo.com",
+      "phoneNumber": "66646817641",
+      "password": "/)2{!TO+.st?",
+      "passwordConfirm": "/)2{!TO+.st?",
+      "gender": "1",
+      "id": 3
+    },
+    {
+      "name": "Richard Casper",
+      "email": "Eldora.Kunze17@yahoo.com",
+      "phoneNumber": "66646817641",
+      "password": "/)2{!TO+.st?",
+      "passwordConfirm": "/)2{!TO+.st?",
+      "gender": "1",
+      "id": 4
     }
   ]
 }
