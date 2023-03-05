@@ -50,7 +50,8 @@ function generatePassword(
     characters += '0123456789';
   }
   if (hasSymbols) {
-    characters += '!@#$%^&*()_+-={}[]|:;<>,.?/';
+    // characters += '!@#$%^&*()_+-={}[]|:;<>,.?/';
+    characters += '@$!%*?&';
   }
   // Generate the password using faker.js
   while (password.length < length) {

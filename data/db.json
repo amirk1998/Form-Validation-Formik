@@ -8,33 +8,6 @@
       "passwordConfirm": "Amir102030@",
       "gender": "0",
       "id": 1
-    },
-    {
-      "name": "Rene Langworth",
-      "email": "Aniya87@yahoo.com",
-      "phoneNumber": "9748959605",
-      "password": "LQ:v}s9e,c2W",
-      "passwordConfirm": "LQ:v}s9e,c2W",
-      "gender": "0",
-      "id": 2
-    },
-    {
-      "name": "Richard Casper",
-      "email": "Eldora.Kunze17@yahoo.com",
-      "phoneNumber": "66646817641",
-      "password": "/)2{!TO+.st?",
-      "passwordConfirm": "/)2{!TO+.st?",
-      "gender": "1",
-      "id": 3
-    },
-    {
-      "name": "Richard Casper",
-      "email": "Eldora.Kunze17@yahoo.com",
-      "phoneNumber": "66646817641",
-      "password": "/)2{!TO+.st?",
-      "passwordConfirm": "/)2{!TO+.st?",
-      "gender": "1",
-      "id": 4
     }
   ]
 }

@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
+import { getOneUser } from '../../services/getOneUserService';
 import FakeData from '../FakeData/FakeData';
 
 const savedData = {
@@ -36,7 +37,8 @@ const validationSchema = Yup.object({
   password: Yup.string()
     .required('Password is Required')
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/,
       'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character'
     ),
   passwordConfirm: Yup.string()
@@ -51,6 +53,8 @@ const SignUpForm = () => {
 
   const [formValues, setFormValues] = useState(null);
 
+  const userID = 1;
+
   const onSubmit = (values) => {
     console.log(values);
   };
@@ -63,6 +67,12 @@ const SignUpForm = () => {
     validateOnMount: true,
     enableReinitialize: true,
   });
+
+  useEffect(() => {
+    getOneUser(userID)
+      .then((res) => setFormValues(res.data))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <div className='h-screen w-1/2'>
@@ -150,7 +160,7 @@ const SignUpForm = () => {
             Password
           </label>
           <input
-            type='password'
+            type='text'
             id='password'
             name='password'
             {...formik.getFieldProps('password')}
@@ -174,7 +184,7 @@ const SignUpForm = () => {
             Confirm Password
           </label>
           <input
-            type='password'
+            type='text'
             id='passwordConfirm'
             name='passwordConfirm'
             {...formik.getFieldProps('passwordConfirm')}
@@ -240,12 +250,12 @@ const SignUpForm = () => {
 
         {/* Load Data Button */}
         <div className='flex items-center justify-center gap-x-2'>
-          <button
+          {/* <button
             onClick={() => setFormValues(savedData)}
             className='focus:outline-none text-white bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 mb-2  '
           >
             Load Data
-          </button>
+          </button> */}
           {/* Submit Button */}
           <button
             type='submit'
