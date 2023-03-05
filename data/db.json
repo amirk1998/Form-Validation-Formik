@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "name": "AmirHossein",
+      "email": "amir@test.com",
+      "phoneNumber": "09171234567",
+      "password": "Amir102030@",
+      "passwordConfirm": "Amir102030@",
+      "gender": "0",
+      "id": 1
+    },
+    {
+      "name": "Rene Langworth",
+      "email": "Aniya87@yahoo.com",
+      "phoneNumber": "9748959605",
+      "password": "LQ:v}s9e,c2W",
+      "passwordConfirm": "LQ:v}s9e,c2W",
+      "gender": "0",
+      "id": 2
+    }
+  ]
+}

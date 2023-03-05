@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
+import FakeData from '../FakeData/FakeData';
 
 const savedData = {
   name: 'AmirHossein',
@@ -9,6 +10,7 @@ const savedData = {
   password: 'Amir102030@',
   passwordConfirm: 'Amir102030@',
   gender: '0',
+  id: crypto.randomUUID(),
 };
 
 const initialValues = {
@@ -129,6 +131,8 @@ const SignUpForm = () => {
             {...formik.getFieldProps('phoneNumber')}
             className='bg-gray-50 border-2 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:outline-none block w-full p-2.5'
             placeholder='Phone Number'
+            // pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+            maxLength={11}
             required
           />
           {formik.errors.phoneNumber && formik.touched.phoneNumber && (
@@ -235,7 +239,7 @@ const SignUpForm = () => {
         </ul>
 
         {/* Load Data Button */}
-        <div className='flex items-center justify-between w-[350px]'>
+        <div className='flex items-center justify-center gap-x-2'>
           <button
             onClick={() => setFormValues(savedData)}
             className='focus:outline-none text-white bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 mb-2  '
@@ -255,6 +259,7 @@ const SignUpForm = () => {
             Submit Data
           </button>
         </div>
+        <FakeData />
       </form>
     </div>
   );
