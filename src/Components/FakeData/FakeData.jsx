@@ -5,11 +5,14 @@ const FakeData = (props) => {
   const [loading, setLoading] = useState(false);
   const { numOfData } = props;
   const [fakeData, setFakeData] = useState([]);
+
   const handleGenerateData = () => {
     console.log('Post User');
     const data = generateFakeData(5);
     setFakeData(data);
-    saveFakeData(data);
+    data.map((obj) => {
+      saveFakeData(obj);
+    });
   };
   return (
     <div>

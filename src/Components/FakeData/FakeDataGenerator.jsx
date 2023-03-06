@@ -1,20 +1,88 @@
 import { faker } from '@faker-js/faker';
+import { useEffect, useState } from 'react';
 import { addNewUser } from '../../services/addNewUserService';
+import { getAllUsers } from '../../services/getAllUsersService';
 
 const generateFakeData = (numOfData) => {
   let dataArray = [];
-  let data = {};
+  let dataObject = {};
 
   for (let i = 0; i < numOfData; i++) {
-    const name = faker.name.findName();
-    const email = faker.internet.email();
-    const phone = faker.phone.phoneNumber();
-    const address = faker.address.streetAddress();
-    const newData = { name, email, phone, address };
+    const randomName = faker.name.fullName();
+    const randomEmail = faker.internet.email();
+    const randomSexType = faker.name.sex();
+    let randomGender = '0';
+    if (randomSexType === 'male') {
+      randomGender = '0';
+    } else if (randomSexType === 'female') {
+      randomGender = '1';
+    }
+
+    const phoneNumberToNumber = (phoneNumber) => {
+      // Remove any non-numeric characters from the string
+      const numericString = phoneNumber.replace(/\D/g, '');
+
+      // Convert the numeric string to a number using parseInt()
+      const number = parseInt(numericString);
+
+      return number;
+    };
+
+    const randomPhoneNumber = phoneNumberToNumber(
+      faker.phone.number('####-###-####')
+    ).toString();
+
+    // const randomPassword = faker.internet.password(10, true, regularExpression);
+
+    // Function to generate a random password with specific requirements
+    function generatePassword(
+      length,
+      hasUppercase,
+      hasLowercase,
+      hasNumbers,
+      hasSymbols
+    ) {
+      let password = '';
+      let characters = '';
+      // Define the character sets based on the requirements
+      if (hasUppercase) {
+        characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      }
+      if (hasLowercase) {
+        characters += 'abcdefghijklmnopqrstuvwxyz';
+      }
+      if (hasNumbers) {
+        characters += '0123456789';
+      }
+      if (hasSymbols) {
+        // characters += '!@#$%^&*()_+-={}[]|:;<>,.?/';
+        characters += '@$!%*?&';
+      }
+      // Generate the password using faker.js
+      while (password.length < length) {
+        password += faker.helpers.arrayElement(characters);
+      }
+      return password;
+    }
+
+    // Generate a random password with the following requirements:
+    // length: 12
+    // hasUppercase: true
+    // hasLowercase: true
+    // hasNumbers: true
+    // hasSymbols: true
+    const randomPassword = generatePassword(12, true, true, true, true);
+    const newData = {
+      name: randomName,
+      email: randomEmail,
+      phoneNumber: randomPhoneNumber,
+      password: randomPassword,
+      passwordConfirm: randomPassword,
+      gender: randomGender,
+    };
     dataArray.push(newData);
   }
-  // dataArray.map((data) => {});
-  return data;
+  return dataArray;
 };
 
 const saveFakeData = async (fakeData) => {
