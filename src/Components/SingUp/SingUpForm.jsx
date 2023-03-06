@@ -108,63 +108,6 @@ const SignUpForm = () => {
             radioOptions={radioOptions}
             name='gender'
           />
-
-          {/* Item 1 */}
-          {/* {radioOptions.map((obj) => {
-            return (
-              <RadioButton
-                formik={formik}
-                key={obj.value}
-                label={obj.label}
-                value={obj.value}
-              />
-            );
-          })} */}
-
-          {/* <li className='w-full border-gray-200 my-2 '>
-            <div className='flex items-center pl-3'>
-              <input
-                id='0'
-                type='radio'
-                value='0'
-                name='gender'
-                onChange={formik.handleChange}
-                checked={formik.values.gender === '0'}
-                className='w-4 h-4 text-purple-600 accent-purple-700 bg-gray-100 border-gray-300  '
-              />
-              <label
-                htmlFor='0'
-                className='w-full py-2 ml-2 text-sm font-medium text-gray-900 '
-              >
-                Male
-              </label>
-            </div>
-          </li> */}
-          {/* Item 2 */}
-          {/* <li className='w-full border-gray-200 my-2 '>
-            <div className='flex items-center pl-3'>
-              <input
-                id='1'
-                type='radio'
-                value='1'
-                name='gender'
-                onChange={formik.handleChange}
-                checked={formik.values.gender === '1'}
-                className='w-4 h-4 text-purple-600 accent-purple-700 bg-gray-100 border-gray-300'
-              />
-              <label
-                htmlFor='1'
-                className='w-full py-2 ml-2 text-sm font-medium text-gray-900'
-              >
-                Female
-              </label>
-            </div>
-          </li> */}
-          {/* {formik.errors.gender && formik.touched.gender && (
-            <div className='text-red-500 mt-1 text-sm'>
-              {formik.errors.gender}
-            </div>
-          )} */}
         </div>
 
         {/* Load Data Button */}
