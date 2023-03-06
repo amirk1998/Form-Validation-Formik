@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { getOneUser } from '../../services/getOneUserService';
 import Input from '../Common/Input';
+import RadioInput from '../Common/RadioInput';
 import FakeData from '../FakeData/FakeData';
 
 const savedData = {
@@ -51,10 +52,14 @@ const validationSchema = Yup.object({
 
 const SignUpForm = () => {
   //
-
   const [formValues, setFormValues] = useState(null);
 
   const userID = 1;
+
+  const radioOptions = [
+    { label: 'male', value: '0' },
+    { label: 'female', value: '1' },
+  ];
 
   const onSubmit = (values) => {
     console.log(values);
@@ -97,9 +102,26 @@ const SignUpForm = () => {
           type='password'
         />
         {/* Radio Buttons */}
-        <ul className='flex items-center justify-between w-[350px] bg-gray-50 border-2 border-gray-300 rounded-lg text-sm font-medium text-slate-900 my-10 '>
+        <div className='flex items-center w-[350px] bg-gray-50 border-2 border-gray-300 rounded-lg text-sm font-medium text-slate-900 my-10 '>
+          <RadioInput
+            formik={formik}
+            radioOptions={radioOptions}
+            name='gender'
+          />
+
           {/* Item 1 */}
-          <li className='w-full border-gray-200 my-2 '>
+          {/* {radioOptions.map((obj) => {
+            return (
+              <RadioButton
+                formik={formik}
+                key={obj.value}
+                label={obj.label}
+                value={obj.value}
+              />
+            );
+          })} */}
+
+          {/* <li className='w-full border-gray-200 my-2 '>
             <div className='flex items-center pl-3'>
               <input
                 id='0'
@@ -117,9 +139,9 @@ const SignUpForm = () => {
                 Male
               </label>
             </div>
-          </li>
+          </li> */}
           {/* Item 2 */}
-          <li className='w-full border-gray-200 my-2 '>
+          {/* <li className='w-full border-gray-200 my-2 '>
             <div className='flex items-center pl-3'>
               <input
                 id='1'
@@ -137,13 +159,13 @@ const SignUpForm = () => {
                 Female
               </label>
             </div>
-          </li>
-          {formik.errors.gender && formik.touched.gender && (
+          </li> */}
+          {/* {formik.errors.gender && formik.touched.gender && (
             <div className='text-red-500 mt-1 text-sm'>
               {formik.errors.gender}
             </div>
-          )}
-        </ul>
+          )} */}
+        </div>
 
         {/* Load Data Button */}
         <div className='flex items-center justify-center gap-x-2'>
