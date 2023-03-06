@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { getOneUser } from '../../services/getOneUserService';
+import Input from '../Common/Input';
 import FakeData from '../FakeData/FakeData';
 
 const savedData = {
@@ -80,125 +81,21 @@ const SignUpForm = () => {
         onSubmit={formik.handleSubmit}
         className=' flex flex-col items-center bg-gray-50 border-2 border-slate-300 shadow-md rounded-lg px-8 py-4'
       >
-        {/* Name */}
-        <div className='mt-1 w-[350px]'>
-          <label
-            htmlFor='name'
-            className='block mb-2 text-lg font-medium text-gray-900'
-          >
-            Name
-          </label>
-          <input
-            type='text'
-            id='name'
-            name='name'
-            {...formik.getFieldProps('name')}
-            className='bg-gray-50 border-2 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:outline-none block w-full p-2.5'
-            placeholder='Name'
-            required
-          />
-          {formik.errors.name && formik.touched.name && (
-            <div className='text-red-500 mt-1 text-sm '>
-              {formik.errors.name}
-            </div>
-          )}
-        </div>
-        {/* Email Address */}
-        <div className='mt-6 w-[350px]'>
-          <label
-            htmlFor='email'
-            className='block mb-2 text-lg font-medium text-gray-900'
-          >
-            Email address
-          </label>
-          <input
-            type='email'
-            id='email'
-            name='email'
-            {...formik.getFieldProps('email')}
-            className='bg-gray-50 border-2 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:outline-none block w-full p-2.5'
-            placeholder='Email'
-            required
-          />
-          {formik.errors.email && formik.touched.email && (
-            <div className='text-red-500 mt-1 text-sm'>
-              {formik.errors.email}
-            </div>
-          )}
-        </div>
-        {/* PhoneNumber */}
-        <div className='mt-6 w-[350px]'>
-          <label
-            htmlFor='phoneNumber'
-            className='block mb-2 text-lg font-medium text-gray-900'
-          >
-            Phone Number
-          </label>
-          <input
-            type='text'
-            id='phoneNumber'
-            name='phoneNumber'
-            {...formik.getFieldProps('phoneNumber')}
-            className='bg-gray-50 border-2 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:outline-none block w-full p-2.5'
-            placeholder='Phone Number'
-            // pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
-            maxLength={11}
-            required
-          />
-          {formik.errors.phoneNumber && formik.touched.phoneNumber && (
-            <div className='text-red-500 mt-1 text-sm '>
-              {formik.errors.phoneNumber}
-            </div>
-          )}
-        </div>
-        {/* Password */}
-        <div className='mt-6 w-[350px]'>
-          <label
-            htmlFor='password'
-            className='block mb-2 text-lg font-medium text-gray-900'
-          >
-            Password
-          </label>
-          <input
-            type='text'
-            id='password'
-            name='password'
-            {...formik.getFieldProps('password')}
-            className='bg-gray-50 border-2 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:outline-none block w-full p-2.5'
-            // placeholder='•••••••••'
-            placeholder='Password'
-            required
-          />
-          {formik.errors.password && formik.touched.password && (
-            <div className='text-red-500 mt-1 text-sm'>
-              {formik.errors.password}
-            </div>
-          )}
-        </div>
-        {/* Confirm Password */}
-        <div className='mt-6 w-[350px]'>
-          <label
-            htmlFor='passwordConfirm'
-            className='block mb-2 text-lg font-medium text-gray-900'
-          >
-            Confirm Password
-          </label>
-          <input
-            type='text'
-            id='passwordConfirm'
-            name='passwordConfirm'
-            {...formik.getFieldProps('passwordConfirm')}
-            className='bg-gray-50 border-2 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:outline-none block w-full p-2.5'
-            // placeholder='•••••••••'
-            placeholder='Confirm Password'
-            required
-          />
-          {formik.errors.passwordConfirm && formik.touched.passwordConfirm && (
-            <div className='text-red-500 mt-1 text-sm'>
-              {formik.errors.passwordConfirm}
-            </div>
-          )}
-        </div>
+        <Input formik={formik} name='name' label='Name' />
+        <Input formik={formik} name='email' label='Email' />
+        <Input formik={formik} name='phoneNumber' label='Phone Number' />
+        <Input
+          formik={formik}
+          name='password'
+          label='Password'
+          type='password'
+        />
+        <Input
+          formik={formik}
+          name='passwordConfirm'
+          label='Password Confirm'
+          type='password'
+        />
         {/* Radio Buttons */}
         <ul className='flex items-center justify-between w-[350px] bg-gray-50 border-2 border-gray-300 rounded-lg text-sm font-medium text-slate-900 my-10 '>
           {/* Item 1 */}
