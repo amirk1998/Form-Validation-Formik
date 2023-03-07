@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { useEffect, useState } from 'react';
+import { addFakeUser } from '../../services/addFakeUserService';
 import { addNewUser } from '../../services/addNewUserService';
 import { getAllUsers } from '../../services/getAllUsersService';
 
@@ -135,7 +136,7 @@ const generateFakeData = (numOfData) => {
 
 const saveFakeData = async (fakeData) => {
   try {
-    await addNewUser(fakeData);
+    await addFakeUser(fakeData);
     console.log('Fake data saved to local database!');
   } catch (error) {
     console.error(error);

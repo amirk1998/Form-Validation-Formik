@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
+import { addNewUser } from '../../services/addNewUserService';
 import { getOneUser } from '../../services/getOneUserService';
 import CheckBoxInput from '../Common/CheckBoxInput';
 import Input from '../Common/Input';
@@ -59,7 +60,7 @@ const SignUpForm = () => {
   //
   const [formValues, setFormValues] = useState(null);
 
-  const userID = 1;
+  // const userID = 1;
 
   const radioOptions = [
     { label: 'Male', value: '0' },
@@ -82,7 +83,11 @@ const SignUpForm = () => {
   ];
 
   const onSubmit = (values) => {
-    console.log(values);
+    const data = { ...values, DateCreated: new Date().toLocaleString() };
+    addNewUser(data)
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+    // console.log(data);
   };
 
   const formik = useFormik({
@@ -94,11 +99,11 @@ const SignUpForm = () => {
     enableReinitialize: true,
   });
 
-  useEffect(() => {
-    getOneUser(userID)
-      .then((res) => setFormValues(res.data))
-      .catch((error) => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   getOneUser(userID)
+  //     .then((res) => console.log(res.data))
+  //     .catch((error) => console.log(error));
+  // }, []);
 
   return (
     <div className='h-screen w-1/2'>
