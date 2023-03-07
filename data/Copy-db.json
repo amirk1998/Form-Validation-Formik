@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "name": "Lee Langosh",
+      "email": "Tom_Hauck@yahoo.com",
+      "phoneNumber": "49460184069",
+      "password": "Jg9!oT1^=&W2",
+      "passwordConfirm": "Jg9!oT1^=&W2",
+      "gender": "0",
+      "nationality": "US",
+      "id": 2
+    },
+    {
+      "name": "Eric Carter",
+      "email": "Tremaine96@gmail.com",
+      "phoneNumber": "96748519020",
+      "password": "Xn4&}??gTu?A",
+      "passwordConfirm": "Xn4&}??gTu?A",
+      "gender": "0",
+      "nationality": "GER",
+      "id": 3
+    },
+    {
+      "name": "Kelly Strosin",
+      "email": "Melyna.Botsford55@gmail.com",
+      "phoneNumber": "82069027864",
+      "password": "Ce1[LN&_;h64",
+      "passwordConfirm": "Ce1[LN&_;h64",
+      "gender": "1",
+      "nationality": "US",
+      "id": 4
+    },
+    {
+      "name": "Judy Breitenberg",
+      "email": "Helen.Upton@gmail.com",
+      "phoneNumber": "85003177671",
+      "password": "Gz0^)Mt/dgfP",
+      "passwordConfirm": "Gz0^)Mt/dgfP",
+      "gender": "0",
+      "nationality": "IR",
+      "id": 5
+    },
+    {
+      "name": "Kerry Lang",
+      "email": "Kylee_Nienow@hotmail.com",
+      "phoneNumber": "16736753905",
+      "password": "Dd5-^L]3s0J<",
+      "passwordConfirm": "Dd5-^L]3s0J<",
+      "gender": "1",
+      "nationality": "GER",
+      "id": 6
+    }
+  ]
+}

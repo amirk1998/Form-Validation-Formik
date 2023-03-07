@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { getOneUser } from '../../services/getOneUserService';
+import CheckBoxInput from '../Common/CheckBoxInput';
 import Input from '../Common/Input';
 import RadioInput from '../Common/RadioInput';
 import SelectComponent from '../Common/SelectComponent';
@@ -15,6 +16,8 @@ const initialValues = {
   passwordConfirm: '',
   gender: '',
   nationality: '',
+  interest: [],
+  terms: false,
 };
 
 const passwordRegex =
@@ -43,13 +46,20 @@ const validationSchema = Yup.object({
   gender: Yup.string().required('Gender is Required'),
 
   nationality: Yup.string().required('Select Nationality'),
+
+  interest: Yup.array().min(1).required('At least select One expertise'),
+
+  terms: Yup.boolean().oneOf(
+    [true],
+    'You must accept the terms and conditions'
+  ),
 });
 
 const SignUpForm = () => {
   //
   const [formValues, setFormValues] = useState(null);
 
-  const userID = 3;
+  const userID = 1;
 
   const radioOptions = [
     { label: 'Male', value: '0' },
@@ -61,6 +71,14 @@ const SignUpForm = () => {
     { label: 'Iran', value: 'IR' },
     { label: 'Germany', value: 'GER' },
     { label: 'USA', value: 'US' },
+  ];
+
+  const checkBoxOptions = [
+    { label: 'React.JS', value: 'React.JS' },
+    { label: 'Vue.JS', value: 'Vue.JS' },
+    { label: 'Next.JS', value: 'Next.JS' },
+    { label: 'Node.JS', value: 'Node.JS' },
+    { label: 'Tailwind', value: 'Tailwind' },
   ];
 
   const onSubmit = (values) => {
@@ -118,6 +136,45 @@ const SignUpForm = () => {
           selectOptions={selectOptions}
           name='nationality'
         />
+
+        {/* CheckBox Input */}
+        {/* <div className='flex items-center justify-around w-[350px] bg-gray-50 border-2 border-gray-300 rounded-lg  font-medium text-slate-900 my-10 px-2 '> */}
+        <CheckBoxInput
+          formik={formik}
+          checkBoxOptions={checkBoxOptions}
+          name='interest'
+        />
+        {/* </div> */}
+
+        {/* Terms and Conditions */}
+        <div className='flex items-center my-3 '>
+          <input
+            name='terms'
+            id='terms'
+            type='checkbox'
+            value={true}
+            onChange={formik.handleChange}
+            checked={formik.values.terms}
+            className='w-5 h-5 text-gray-900 accent-green-700 rounded '
+          />
+          <label
+            htmlFor='terms'
+            className='ml-2 text-base font-medium text-gray-900'
+          >
+            I agree with the
+            <a
+              href='http://localhost:5173/'
+              className='text-blue-600 dark:text-blue-500 hover:underline ml-2'
+            >
+              terms and conditions
+            </a>
+          </label>
+        </div>
+        {formik.errors.terms && formik.touched.terms && (
+          <div className='text-red-500 mt-1 mb-6 text-sm'>
+            {formik.errors.terms}
+          </div>
+        )}
 
         {/* Load Data Button */}
         <div className='flex items-center justify-center gap-x-2'>
