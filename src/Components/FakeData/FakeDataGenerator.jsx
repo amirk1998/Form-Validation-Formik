@@ -35,43 +35,88 @@ const generateFakeData = (numOfData) => {
     // const randomPassword = faker.internet.password(10, true, regularExpression);
 
     // Function to generate a random password with specific requirements
-    function generatePassword(
-      length,
-      hasUppercase,
-      hasLowercase,
-      hasNumbers,
-      hasSymbols
-    ) {
+    // function generatePassword(
+    //   length,
+    //   hasUppercase,
+    //   hasLowercase,
+    //   hasNumbers,
+    //   hasSymbols
+    // ) {
+    //   let password = '';
+    //   let characters = '';
+    //   // Define the character sets based on the requirements
+    //   if (hasUppercase) {
+    //     characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    //   }
+    //   if (hasLowercase) {
+    //     characters += 'abcdefghijklmnopqrstuvwxyz';
+    //   }
+    //   if (hasNumbers) {
+    //     characters += '0123456789';
+    //   }
+    //   if (hasSymbols) {
+    //     // characters += '!@#$%^&*()_+-={}[]|:;<>,.?/';
+    //     characters += '@$!%*?&';
+    //   }
+    //   // Generate the password using faker.js
+    //   while (password.length < length) {
+    //     password += faker.helpers.arrayElement(characters);
+    //   }
+    //   return password;
+    // }
+
+    // // Generate a random password with the following requirements:
+    // // length: 12
+    // // hasUppercase: true
+    // // hasLowercase: true
+    // // hasNumbers: true
+    // // hasSymbols: true
+    // const randomPassword = generatePassword(12, true, true, true, true);
+
+    function generatePassword() {
+      const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+      const numbers = '0123456789';
+      const specialCharacters = '!@#$%^&*()_+-=[]{}|;:,.<>/?';
+
       let password = '';
-      let characters = '';
-      // Define the character sets based on the requirements
-      if (hasUppercase) {
-        characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      password += uppercase.charAt(
+        Math.floor(Math.random() * uppercase.length)
+      );
+      password += lowercase.charAt(
+        Math.floor(Math.random() * lowercase.length)
+      );
+      password += numbers.charAt(Math.floor(Math.random() * numbers.length));
+      password += specialCharacters.charAt(
+        Math.floor(Math.random() * specialCharacters.length)
+      );
+
+      const remainingLength = 12 - password.length;
+      const allChars = uppercase + lowercase + numbers + specialCharacters;
+      for (let i = 0; i < remainingLength; i++) {
+        password += allChars.charAt(
+          Math.floor(Math.random() * allChars.length)
+        );
       }
-      if (hasLowercase) {
-        characters += 'abcdefghijklmnopqrstuvwxyz';
-      }
-      if (hasNumbers) {
-        characters += '0123456789';
-      }
-      if (hasSymbols) {
-        // characters += '!@#$%^&*()_+-={}[]|:;<>,.?/';
-        characters += '@$!%*?&';
-      }
-      // Generate the password using faker.js
-      while (password.length < length) {
-        password += faker.helpers.arrayElement(characters);
-      }
+
       return password;
     }
 
-    // Generate a random password with the following requirements:
-    // length: 12
-    // hasUppercase: true
-    // hasLowercase: true
-    // hasNumbers: true
-    // hasSymbols: true
-    const randomPassword = generatePassword(12, true, true, true, true);
+    const randomPassword = generatePassword();
+
+    let randomNationality = '';
+    const words = ['IR', 'GER', 'US'];
+
+    const randomNumber = Math.floor(Math.random() * 3);
+
+    if (randomNumber === 0) {
+      randomNationality = words[0];
+    } else if (randomNumber === 1) {
+      randomNationality = words[1];
+    } else if (randomNumber === 2) {
+      randomNationality = words[2];
+    }
+
     const newData = {
       name: randomName,
       email: randomEmail,
@@ -79,6 +124,7 @@ const generateFakeData = (numOfData) => {
       password: randomPassword,
       passwordConfirm: randomPassword,
       gender: randomGender,
+      nationality: randomNationality,
     };
     dataArray.push(newData);
   }

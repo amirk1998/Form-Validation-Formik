@@ -4,17 +4,8 @@ import * as Yup from 'yup';
 import { getOneUser } from '../../services/getOneUserService';
 import Input from '../Common/Input';
 import RadioInput from '../Common/RadioInput';
+import SelectComponent from '../Common/SelectComponent';
 import FakeData from '../FakeData/FakeData';
-
-const savedData = {
-  name: 'AmirHossein',
-  email: 'amir@test.com',
-  phoneNumber: '09171234567',
-  password: 'Amir102030@',
-  passwordConfirm: 'Amir102030@',
-  gender: '0',
-  id: crypto.randomUUID(),
-};
 
 const initialValues = {
   name: '',
@@ -23,7 +14,11 @@ const initialValues = {
   password: '',
   passwordConfirm: '',
   gender: '',
+  nationality: '',
 };
+
+const passwordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+=[\]{}|\\,./?><-]).{8,}$/;
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -36,29 +31,36 @@ const validationSchema = Yup.object({
     .required('Phone Number is Required')
     .matches(/^[0-9]{11}$/, 'Invalid Phone Number')
     .nullable(),
-  password: Yup.string()
-    .required('Password is Required')
-    .matches(
-      // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/,
-      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character'
-    ),
+  password: Yup.string().required('Password is Required').matches(
+    // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+    passwordRegex,
+    'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character'
+  ),
   passwordConfirm: Yup.string()
     .required('Password Confirmation is Required')
     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
 
   gender: Yup.string().required('Gender is Required'),
+
+  nationality: Yup.string().required('Select Nationality'),
 });
 
 const SignUpForm = () => {
   //
   const [formValues, setFormValues] = useState(null);
 
-  const userID = 1;
+  const userID = 3;
 
   const radioOptions = [
-    { label: 'male', value: '0' },
-    { label: 'female', value: '1' },
+    { label: 'Male', value: '0' },
+    { label: 'Female', value: '1' },
+  ];
+
+  const selectOptions = [
+    { label: 'select nationality ...', value: '' },
+    { label: 'Iran', value: 'IR' },
+    { label: 'Germany', value: 'GER' },
+    { label: 'USA', value: 'US' },
   ];
 
   const onSubmit = (values) => {
@@ -102,13 +104,20 @@ const SignUpForm = () => {
           type='password'
         />
         {/* Radio Buttons */}
-        <div className='flex items-center w-[350px] bg-gray-50 border-2 border-gray-300 rounded-lg text-sm font-medium text-slate-900 my-10 '>
+        <div className='flex items-center justify-around w-[350px] bg-gray-50 border-2 border-gray-300 rounded-lg  font-medium text-slate-900 my-10 px-2 '>
           <RadioInput
             formik={formik}
             radioOptions={radioOptions}
             name='gender'
           />
         </div>
+
+        {/* Select Nationality */}
+        <SelectComponent
+          formik={formik}
+          selectOptions={selectOptions}
+          name='nationality'
+        />
 
         {/* Load Data Button */}
         <div className='flex items-center justify-center gap-x-2'>
