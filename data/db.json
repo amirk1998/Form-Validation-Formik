@@ -8,9 +8,71 @@
       "passwordConfirm": "Amir102030@",
       "gender": "0",
       "nationality": "US",
-      "interest": ["React.JS"],
+      "interest": [
+        "React.JS"
+      ],
       "terms": false,
       "id": 1
+    },
+    {
+      "name": "Elizabeth Greenholt PhD",
+      "email": "Tanya79@hotmail.com",
+      "phoneNumber": "521846027",
+      "password": "Tm6]:Ew?>0a5",
+      "passwordConfirm": "Tm6]:Ew?>0a5",
+      "gender": "0",
+      "nationality": "IR",
+      "interest": [],
+      "terms": false,
+      "id": 2
+    },
+    {
+      "name": "Nick Hand Sr.",
+      "email": "Petra_Batz@yahoo.com",
+      "phoneNumber": "65481073257",
+      "password": "Yq0{N>O7ZIGT",
+      "passwordConfirm": "Yq0{N>O7ZIGT",
+      "gender": "1",
+      "nationality": "US",
+      "interest": [],
+      "terms": false,
+      "id": 3
+    },
+    {
+      "name": "Jim Will",
+      "email": "Millie79@gmail.com",
+      "phoneNumber": "63732940295",
+      "password": "Xb0%&-964I5{",
+      "passwordConfirm": "Xb0%&-964I5{",
+      "gender": "1",
+      "nationality": "US",
+      "interest": [],
+      "terms": false,
+      "id": 4
+    },
+    {
+      "name": "Felipe Green",
+      "email": "Daniela_Langworth@gmail.com",
+      "phoneNumber": "8263016362",
+      "password": "Tm9-;dy@8b=C",
+      "passwordConfirm": "Tm9-;dy@8b=C",
+      "gender": "0",
+      "nationality": "US",
+      "interest": [],
+      "terms": false,
+      "id": 5
+    },
+    {
+      "name": "Jay Funk",
+      "email": "Name.Stehr@hotmail.com",
+      "phoneNumber": "64819987727",
+      "password": "Kh8=HoTl=Rfz",
+      "passwordConfirm": "Kh8=HoTl=Rfz",
+      "gender": "1",
+      "nationality": "GER",
+      "interest": [],
+      "terms": false,
+      "id": 6
     }
   ]
 }

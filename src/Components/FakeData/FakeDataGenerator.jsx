@@ -125,6 +125,8 @@ const generateFakeData = (numOfData) => {
       passwordConfirm: randomPassword,
       gender: randomGender,
       nationality: randomNationality,
+      interest: [],
+      terms: false,
     };
     dataArray.push(newData);
   }
